@@ -98,6 +98,71 @@ async function query(text, params) {
 
 // Инициализация структуры таблиц и создание суперадмина
 async function initDb() {
+  // Свежая (пустая) база: первый блок миграций ниже делает ALTER TABLE по таблицам, которых ещё нет
+  // (раньше они создавались только дальше по коду). Поэтому заранее создаём базовые таблицы —
+  // на уже работающей базе всё это ничего не меняет (IF NOT EXISTS).
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS users (
+      id BIGSERIAL PRIMARY KEY,
+      last_name TEXT NOT NULL,
+      first_name TEXT NOT NULL,
+      object TEXT NOT NULL DEFAULT '',
+      department TEXT NOT NULL DEFAULT '',
+      position TEXT NOT NULL DEFAULT '',
+      login TEXT UNIQUE,
+      password_hash TEXT,
+      role TEXT NOT NULL CHECK(role IN ('superadmin','admin','assistant','employee')),
+      active SMALLINT NOT NULL DEFAULT 1,
+      created_at TIMESTAMPTZ DEFAULT NOW()
+    );
+    CREATE TABLE IF NOT EXISTS courses (
+      id BIGSERIAL PRIMARY KEY,
+      title_ru TEXT NOT NULL,
+      title_kz TEXT NOT NULL,
+      description_ru TEXT DEFAULT '',
+      description_kz TEXT DEFAULT '',
+      material_pdf_path TEXT,
+      video_url TEXT,
+      time_limit_minutes INT NOT NULL DEFAULT 20,
+      pass_score_percent INT NOT NULL DEFAULT 80,
+      validity_months INT NOT NULL DEFAULT 12,
+      created_by BIGINT,
+      created_at TIMESTAMPTZ DEFAULT NOW()
+    );
+    CREATE TABLE IF NOT EXISTS assignments (
+      id BIGSERIAL PRIMARY KEY,
+      user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+      course_id BIGINT NOT NULL REFERENCES courses(id) ON DELETE CASCADE,
+      protocol_number TEXT NOT NULL,
+      protocol_date TEXT NOT NULL,
+      status TEXT NOT NULL DEFAULT 'pending' CHECK(status IN ('pending','in_progress','passed','failed')),
+      retake_allowed SMALLINT NOT NULL DEFAULT 0,
+      attempts_used INT NOT NULL DEFAULT 0,
+      score_percent INT,
+      focus_violations INT NOT NULL DEFAULT 0,
+      certificate_number TEXT,
+      test_date TEXT,
+      next_test_date TEXT,
+      assigned_by BIGINT,
+      created_at TIMESTAMPTZ DEFAULT NOW()
+    );
+    CREATE TABLE IF NOT EXISTS settings (
+      id INT PRIMARY KEY CHECK (id = 1),
+      company_name TEXT DEFAULT 'ТОО «Компания»',
+      chairman_name TEXT DEFAULT '',
+      member2_name TEXT DEFAULT '',
+      member3_name TEXT DEFAULT '',
+      logo_path TEXT,
+      stamp_path TEXT,
+      signature_path TEXT,
+      protocol_prefix TEXT DEFAULT '',
+      protocol_next_number INT DEFAULT 1,
+      certificate_prefix TEXT DEFAULT '',
+      certificate_digits INT DEFAULT 4,
+      certificate_next_number INT DEFAULT 1
+    );
+  `);
+
   // Автоматические миграции для расширенного функционала
   await pool.query(`
     ALTER TABLE settings ADD COLUMN IF NOT EXISTS logo_data TEXT;
