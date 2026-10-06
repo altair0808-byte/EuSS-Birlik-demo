@@ -1,0 +1,28 @@
+{
+  "name": "tb-training-platform",
+  "version": "1.0.0",
+  "description": "Платформа обучения и тестирования по ТБ/БиОТ (RU/KZ)",
+  "main": "Server.js",
+  "scripts": {
+    "start": "node Server.js",
+    "dev": "node Server.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.4",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "exceljs": "^4.4.0",
+    "express": "^4.19.0",
+    "jsonwebtoken": "^9.0.2",
+    "jszip": "^3.10.1",
+    "multer": "^1.4.5-lts.1",
+    "pdf-lib": "^1.17.1",
+    "pdfkit": "^0.15.0",
+    "pg": "^8.13.1",
+    "qrcode": "^1.5.4",
+    "sharp": "^0.33.5",
+    "web-push": "^3.6.7",
+    "xlsx": "^0.18.5"
+  }
+}

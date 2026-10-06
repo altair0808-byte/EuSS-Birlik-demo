@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Проверка удостоверения / Куәлікті тексеру / Verify certificate</title>
+<link rel="icon" type="image/png" sizes="64x64" href="data:image/png;base64,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">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#081f2d">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    background: #f1f5f9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    padding: 24px;
+  }
+  .card {
+    background: #fff; border-radius: 16px; box-shadow: 0 10px 30px rgba(15,59,108,0.12);
+    max-width: 480px; width: 100%; padding: 28px 24px; border-top: 6px solid #0f3b6c;
+  }
+  .status { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-radius: 12px; font-weight: 700; margin-bottom: 20px; }
+  .status.valid { background: #e8f8ee; color: #0f7a3c; }
+  .status.expired { background: #fff7e6; color: #b45309; }
+  .status.revoked { background: #fdeaea; color: #b91c1c; }
+  .status.notfound { background: #f1f5f9; color: #64748b; }
+  .status .dot { width: 12px; height: 12px; border-radius: 999px; background: currentColor; flex-shrink: 0; }
+  h1 { font-size: 15px; color: #0f3b6c; margin: 0 0 4px; }
+  .sub { font-size: 12px; color: #64748b; margin: 0 0 18px; }
+  .row { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid #eef2f7; font-size: 14px; }
+  .row:last-child { border-bottom: none; }
+  .row .label { color: #64748b; }
+  .row .value { font-weight: 600; color: #1e293b; text-align: right; }
+  .uid { font-family: monospace; font-size: 12px; color: #94a3b8; text-align: center; margin-top: 18px; }
+  .loading { text-align: center; color: #94a3b8; padding: 30px 0; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>Проверка документа о проверке знаний по БиОТ</h1>
+    <p class="sub">Білімді тексеру куәлігі / Safety knowledge certificate</p>
+    <div id="content" class="loading">Проверка... / Тексерілуде... / Checking...</div>
+  </div>
+
+<script>
+function fmtDate(s) {
+  if (!s) return '—';
+  const d = new Date(s);
+  if (isNaN(d.getTime())) return '—';
+  return d.toLocaleDateString('ru-RU');
+}
+
+const STATUS_META = {
+  VALID:   { cls: 'valid',   text: 'ДЕЙСТВИТЕЛЬНО / ЖАРАМДЫ / VALID' },
+  EXPIRED: { cls: 'expired', text: 'СРОК ИСТЁК / МЕРЗІМІ АЯҚТАЛДЫ / EXPIRED' },
+  REVOKED: { cls: 'revoked', text: 'АННУЛИРОВАНО / ЖОЙЫЛДЫ / REVOKED' }
+};
+
+async function run() {
+  const uid = decodeURIComponent(location.pathname.split('/').pop());
+  const content = document.getElementById('content');
+  try {
+    // Один и тот же QR-адрес обслуживает ДВА разных документа: сертификат
+    // (/api/certificates/verify) и удостоверение (/api/id-cards/verify).
+    // UID удостоверения начинается с UD-, сертификата — с BIOT-, поэтому сначала
+    // спрашиваем подходящий сервис, а затем, на всякий случай, второй.
+    const isCard = /^UD-/i.test(uid);
+    const endpoints = isCard
+      ? ['/api/id-cards/verify/', '/api/certificates/verify/']
+      : ['/api/certificates/verify/', '/api/id-cards/verify/'];
+    let data = { found: false };
+    for (const ep of endpoints) {
+      try {
+        const r = await fetch(ep + encodeURIComponent(uid));
+        const d = await r.json();
+        if (d && d.found) { data = d; break; }
+      } catch (err) { /* пробуем следующий сервис */ }
+    }
+    if (!data.found) {
+      content.innerHTML = `
+        <div class="status notfound"><span class="dot"></span>ДОКУМЕНТ НЕ НАЙДЕН / NOT FOUND</div>
+        <div class="uid">${uid}</div>`;
+      return;
+    }
+    const meta = STATUS_META[data.status] || STATUS_META.VALID;
+    content.innerHTML = `
+      <div class="status ${meta.cls}"><span class="dot"></span>${meta.text}</div>
+      <div class="row"><span class="label">Тип документа</span><span class="value">${data.document_type === 'id_card' ? 'Удостоверение' : 'Сертификат'}</span></div>
+      <div class="row"><span class="label">ФИО / Name</span><span class="value">${data.full_name || '—'}</span></div>
+      <div class="row"><span class="label">Номер документа</span><span class="value">${data.certificate_number || '—'}</span></div>
+      <div class="row"><span class="label">Курс / Course</span><span class="value">${data.course_title_ru || data.course_title_kz || '—'}</span></div>
+      <div class="row"><span class="label">№ протокола</span><span class="value">${data.protocol_number || '—'}</span></div>
+      <div class="row"><span class="label">Дата выдачи</span><span class="value">${fmtDate(data.issue_date)}</span></div>
+      <div class="row"><span class="label">Действителен до</span><span class="value">${data.expiry_date ? fmtDate(data.expiry_date) : 'Бессрочно'}</span></div>
+      <div class="uid">${data.certificate_uid || uid}</div>
+    `;
+  } catch (e) {
+    content.innerHTML = `<div class="status notfound"><span class="dot"></span>ОШИБКА ПРОВЕРКИ / ERROR</div>`;
+  }
+}
+run();
+</script>
+</body>
+</html>
